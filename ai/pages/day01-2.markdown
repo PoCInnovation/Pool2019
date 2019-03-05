@@ -1,7 +1,4 @@
-status: hidden
 Title: Jour 01 - Partie 2
-Template: Page
-odate: 02/04/19
 
 ## Définition du modèle
 
@@ -18,7 +15,7 @@ $a$ et $b$ sont **“deux paramètres optimisables”**, c’est à dire que ce 
 Le paramètre a est un coefficient de notre entrée $x$. C’est à dire que c’est lui qui va transformer notre entrée. En d’autres termes, a va représenter la “pente” de notre droite:
 
 
-![affine](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d01/3aff.png)
+![affine](https://raw.githubusercontent.com/PoCFrance/Pool2019/master/ai//images/d01/3aff.png)
 
 <div style="page-break-after: always;"></div>
 
@@ -26,7 +23,7 @@ Le paramètre a est un coefficient de notre entrée $x$. C’est à dire que c�
 
 Le paramètre $b$ est ce qu’on appelle un biais. C’est lui qui va **“réguler la hauteur”** de notre droite dans son espace:
 
-![multaff](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d01/multaff.png)
+![multaff](https://raw.githubusercontent.com/PoCFrance/Pool2019/master/ai//images/d01/multaff.png)
 
 <div style="page-break-after: always;"></div>
 ---
@@ -38,7 +35,7 @@ Nous voulons que notre modèle représente au mieux notre donnée. En d’autres
 Pour cela, nous devons définir une métrique pour mesurer cette erreur. On appelle cette métrique la perte (ou fonction de coût, ou loss en anglais).
 Dans notre cas, cette perte peut être définie par la distance entre la prédiction de notre droite et la valeur attendue définie dans notre dataset:
 
-![multaff](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d01/perte.png)
+![multaff](https://raw.githubusercontent.com/PoCFrance/Pool2019/master/ai//images/d01/perte.png)
 
 Faire apprendre notre modèle signifie donc “réduire le plus possible la perte de notre modèle sur un dataset”. En effet, plus la distance entre les prédictions de notre droite et les valeurs attendues de notre dataset sera faible, plus notre modèle sera une approximation fidèle de notre jeu de donnée.
 
@@ -88,5 +85,5 @@ TIPS:
 }
 </style>
 
-<a href="https://github.com/PoCFrance/Pool2019/tree/master/ai/subjects/day01-3.markdown" class="swag next">Partie 3 &#8250;</a>
+<a href="https://github.com/PoCFrance/Pool2019/blob/master/ai/pages/day01-3.markdown" class="swag next">Partie 3 &#8250;</a>
 

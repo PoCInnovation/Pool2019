@@ -29,7 +29,7 @@ Commençons par un exemple concret.
 
 ### **Exercice 1** - Découvrez la donnée:
 
-Ouvrez le jeu de donnée [Blood.csv](https://github.com/PoCFrance/Pool2019/tree/master/ai/exercices/day01/Blood.csv) fourni avec le sujet grâce à un tableur.
+Ouvrez le jeu de donnée [Blood.csv](https://raw.githubusercontent.com/PoCFrance/Pool2019/master/ai/exercices/day01/blood.csv) fourni avec le sujet grâce à un tableur.
 
 Nous avons un ensemble de donnée de pression systolique (pression sanguine mesurée lors de la contraction du coeur) en fonction de l'âge de patients:
 
@@ -91,4 +91,4 @@ Selon vous, quelle fonction mathématique serait la plus adapte pour représente
 }
 </style>
 
-<a href="https://github.com/PoCFrance/Pool2019/tree/master/ai/subjects/day01-2.markdown" class="swag next">Partie 2 &#8250;</a>
+<a href="https://github.com/PoCFrance/Pool2019/blob/master/ai/pages/day01-2.markdown" class="swag next">Partie 2 &#8250;</a>

@@ -33,7 +33,7 @@ Soit f la fonction définie par $f:x \longrightarrow x^2$
 
 La représentation graphique de f est la suivante:
 
-![perte](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d01/loss.png)
+![perte](https://raw.githubusercontent.com/PoCFrance/Pool2019/master/ai/images/d01/loss.png)
 
 Nous pouvons observer que $f$ possède un minimum global: lorsque $x = 0$.
 Imaginons maintenant que nous ne connaissons pas le minimum global de $f$ et que nous voulons trouver cette valeur de $x$ pour laquelle $f$ est au plus faible.
@@ -80,7 +80,7 @@ Ainsi, si l’on reprend la fonction de l’exercice 5:
 Reprenons notre définition du gradient. La deuxième phrase nous dit: “Il représente donc la pente de la tangente du graphe de la fonction : il pointe dans la direction du taux d’augmentation le plus élevé de la fonction et sa magnitude est la pente du graphique dans cette direction.”.
 Cela signifie donc que notre gradient est un vecteur indiquant le maximum de notre fonction. Illustrons ce concept avec un schéma:
 
-![minimize](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d01/minimize.png)
+![minimize](https://raw.githubusercontent.com/PoCFrance/Pool2019/master/ai/images/d01/minimize.png)
 
 * Nous avons ici deux fonctions prenant deux paramètres (cela donne un schéma en 2 dimensions avec les valeurs données par une couleur)
 * Le blanc représente de faibles valeurs de $f$
@@ -130,7 +130,7 @@ Revenons sur le terme :
 
 Voici un schéma illustrant le rôle du taux d’apprentissage:
 
-![lr](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d01/lr.png)
+![lr](https://raw.githubusercontent.com/PoCFrance/Pool2019/master/ai/images/d01/lr.png)
 
 <div style="page-break-after: always;"></div>
 ---
@@ -194,4 +194,4 @@ Calculer le gradient $∇J(x)$ de la fonction de coût (MSE) par rapport aux par
 Compléter le fichier [**blood_model.py**](https://github.com/PoCFrance/Pool2019/tree/master/ai/exercices/day01/blood_model.py) et obtenez un modèle linéaire du dataset Blood.csv
 Vous devriez obtenir quelque chose similaire à ceci:
 
-![dresult](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d01/dayresult.png)
+![dresult](https://raw.githubusercontent.com/PoCFrance/Pool2019/master/ai/images/d01/dayresult.png)

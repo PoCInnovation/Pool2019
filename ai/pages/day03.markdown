@@ -160,7 +160,7 @@ Enfin la dernière étape est ```tf.reset_default_graph()```qui permet de dire �
 
 Nous aimerons reproduire le graph de calcul suivant:
 
-![graph ex01](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d03/ex01.png)
+![graph ex01](https://raw.githubusercontent.com/PoCFrance/Pool2019/master/ai//images/d03/ex01.png)
 
 En outre cela revient à reproduire l'équation $x = 2^2 + 3^2$:
 
@@ -444,7 +444,7 @@ plt.show()
 
 Pensez toujours à prendre le temps d'explorer vos données d'entrainement, c'est vraiment important !
 
-![plot ex02](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d03/ex02_plot.png)
+![plot ex02](https://raw.githubusercontent.com/PoCFrance/Pool2019/master/ai//images/d03/ex02_plot.png)
 
 Il ne vous reste plus qu'a constituer le graph tensorflow et à entrainer votre modèle.
 Si vous avez un doute n'hésitez pas à aller sur la documentation de Tensorflow, elle est très clair.
@@ -453,7 +453,7 @@ Pour la fonction d'erreur vous pouvez la définir vous même ou utiliser la [MSE
 
 Voici le genre de résultat à obtenir:
 
-![result ex02](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d03/ex02_result.png)
+![result ex02](https://raw.githubusercontent.com/PoCFrance/Pool2019/master/ai//images/d03/ex02_result.png)
 
 ---
 

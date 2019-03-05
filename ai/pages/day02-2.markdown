@@ -64,7 +64,7 @@ TIPS:
 
 Affichons la porte logique XOR:
 
-![graph ex01](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d02/10.png)
+![graph ex01](https://raw.githubusercontent.com/PoCFrance/Pool2019/master/ai//images/d02/10.png)
 
 Le problème avec cette porte, c’est qu’une droite ne suffit pas pour séparer les points noir des points blanc. La porte XOR n’est donc pas linéairement séparable.
 
@@ -72,7 +72,7 @@ Le problème avec cette porte, c’est qu’une droite ne suffit pas pour sépar
 
 Pour résoudre ce problème, il nous faudrait deux neurones séparant les points blancs des points noir et un dernier neurone permettant de faire une synthèse de la sortie des deux premiers et réaliser un enchaînement de séparations linéaires de notre espace:
 
-![graph ex01](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d02/11.png)
+![graph ex01](https://raw.githubusercontent.com/PoCFrance/Pool2019/master/ai//images/d02/11.png)
 
 <div style="page-break-after: always;"></div>
 
@@ -80,7 +80,7 @@ Pour résoudre ce problème, il nous faudrait deux neurones séparant les points
 
 Pour cela, nous allons ajouter une couche supplémentaire appelée couche cachée:
 
-![graph ex01](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d02/12.png)
+![graph ex01](https://raw.githubusercontent.com/PoCFrance/Pool2019/master/ai//images/d02/12.png)
 
 ### **Exercice 10** - Coder un réseau de neurones:
 
@@ -99,7 +99,7 @@ Pour faire apprendre nos neurones de notre couche cachée, nous avons besoin d�
 Le calcul du gradient pour les neurones de sortie reste le même.
 Cependant, la dérivée partielle de la fonction de coût par rapport à un poid d’un neurone d’une couche cachée dépend de l’ensemble des dérivées des connections de ce neurone à la couche suivante. Voici un schéma pour expliquer cela:
 
-![graph ex01](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d02/13.png)
+![graph ex01](https://raw.githubusercontent.com/PoCFrance/Pool2019/master/ai//images/d02/13.png)
 
 <div style="page-break-after: always;"></div>
 

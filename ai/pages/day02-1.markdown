@@ -8,7 +8,7 @@ Chaque neurone est une entité autonome au sein du cerveau. Un neurone comprend 
 
 Voici un schéma pour vous aider à comprendre:
 
-![graph ex01](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d02/1.png)
+![graph ex01](https://raw.githubusercontent.com/PoCFrance/Pool2019/master/ai//images/d02/1.png)
 
 En d’autres termes, le neurone biologique reçoit des stimulations qui excitent ou inhibent les dendrites, le corps cellulaire “somme” les informations reçues, transmet l’information à l’axone qui va activer ou non le neurone, c’est à dire exciter ou inhiber les neurones liés aux synapses.
 
@@ -22,7 +22,7 @@ La somme pondérée entre les entrées x et les poids synaptiques w s’appelle 
 
 Schématiquement, la pré-activation ressemble à ceci:
 
-![graph ex01](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d02/2.png)
+![graph ex01](https://raw.githubusercontent.com/PoCFrance/Pool2019/master/ai//images/d02/2.png)
 
 <div style="page-break-after: always;"></div>
 
@@ -41,7 +41,7 @@ En utilisant un sigma, écrire la formule de la pré-activation S d’un neurone
 
 De la même manière qu’au jour 1, cette formule représente une transformation linéaire de nos entrées. Ainsi, si l’on affiche la représentation graphique de notre pré-activation, on observerait une droite (si n=1), un plan (si n=2), ou un hyperplan (si n>=3).
 
-![graph ex01](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d02/3.png)
+![graph ex01](https://raw.githubusercontent.com/PoCFrance/Pool2019/master/ai//images/d02/3.png)
 
 Représentation graphique de S avec n=2
 
@@ -54,7 +54,7 @@ Maintenant que nous avons une transformation linéaire de nos entrées, nous dev
 La fonction sigmoid est définie par $ f:x \mapsto 11+e-x $
 Sa représentation graphique est la suivante:
 
-![graph ex01](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d02/4.png)
+![graph ex01](https://raw.githubusercontent.com/PoCFrance/Pool2019/master/ai//images/d02/4.png)
 
 Outre le fait que cette fonction soit centrée en 0, elle opère comme une sorte de “séparateur” d’espace. C’est à dire que:
 Si x<0, alors 0<f(x)<0.5
@@ -66,7 +66,7 @@ Ainsi, en donnant la pré-activation S(x) de notre neurone en entrée de la fonc
 Si S(x)<0, alors 0<f(S(x))<0.5, le neurone n’est pas activé;
 Si S(x)0, alors 0.5f(S(x))<1, le neurone est activé.
 
-![graph ex01](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d02/5.png)
+![graph ex01](https://raw.githubusercontent.com/PoCFrance/Pool2019/master/ai//images/d02/5.png)
 
 Activation d’un neurone (avec n=2)
 
@@ -74,7 +74,7 @@ Activation d’un neurone (avec n=2)
 
 Ainsi, le schéma global du neurone artificiel est le suivant:
 
-![graph ex01](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d02/6.png)
+![graph ex01](https://raw.githubusercontent.com/PoCFrance/Pool2019/master/ai//images/d02/6.png)
 
 ### **Exercice 2** - Écrire la formule de l’activation d’un neurone
 
@@ -126,13 +126,13 @@ Commençons par la porte OR:
 
 Affichons cette porte sur un plan:
 
-![graph ex01](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d02/7.png)
+![graph ex01](https://raw.githubusercontent.com/PoCFrance/Pool2019/master/ai//images/d02/7.png)
 
 On remarque que la porte OR est linéairement séparable, c’est à dire qu’un neurone artificiel est capable de faire une approximation de cette porte logique.
 
 <div style="page-break-after: always;"></div>
 
-![graph ex01](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d02/8.png)
+![graph ex01](https://raw.githubusercontent.com/PoCFrance/Pool2019/master/ai//images/d02/8.png)
 
 Illustration de la séparation linéaire de la porte OR
 
@@ -157,7 +157,7 @@ Imaginons maintenant la ième sortie attendue yi soit 0, alors l’entropie pour
 
 Prenons la courbe de la fonction ln:
 
-![graph ex01](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d02/9.png)
+![graph ex01](https://raw.githubusercontent.com/PoCFrance/Pool2019/master/ai//images/d02/9.png)
 
 <div style="page-break-after: always;"></div>
 
@@ -256,4 +256,4 @@ Exercice 5.5 - Calculer la dérivée partielle du biais:
 
 Le gradient ∇est donc défini par: ∇=J(X,y)w0,J(X,y)w1,... ,J(X,y)wn, J(X,y)b
 
-<a href="https://github.com/PoCFrance/Pool2019/tree/master/ai/pages/subjects/day02-2.markdown" class="swag next">Partie 2 &#8250;</a>
+<a href="https://github.com/PoCFrance/Pool2019/blob/master/ai/pages/day02-2.markdown" class="swag next">Partie 2 &#8250;</a>
