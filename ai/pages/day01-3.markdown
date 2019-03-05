@@ -1,0 +1,197 @@
+Title: Jour 01 - Partie 3
+
+
+### La Mean Squared Error (MSE)
+
+Voiçi la fonction de coût $J$ que vous auriez dû trouver à l’exercice 4:
+
+* Soit N le nombre d’exemple (de paire âge / pression systolique) dans notre dataset;
+* $oᵢ = f(xᵢ) = axᵢ+b$, la sortie de notre modèle pour l’âge $xᵢ$ donné;
+* Et $yᵢ$ la pression sanguine systolique attendues pour l’âge $xᵢ$.
+
+$$ J = \sqrt{\frac{1}{N} * \sum_{i=0}^n {(oᵢ - yᵢ)²}} $$
+
+On appelle cette fonction Root Mean Squared Error (RMSE). Elle définie l’erreur moyenne entre nos prédictions et les valeurs attendues par notre dataset. C’est cette erreur moyenne que nous devons minimiser pour que notre modèle fasse une approximation de notre donnée.
+
+Cependant, la fonction $f: x \longrightarrow \sqrt{x}$ est une fonction strictement croissante sur $ℝ+$.
+Or, minimiser une fonction strictement croissante revient à minimiser son contenu.
+Example: minimiser $f: x \longrightarrow \sqrt{x}$ revient à minimiser $f:x \longrightarrow x$ pour tout $x ∈ ℝ+$.
+Donc, nous pouvons simplifier la fonction RMSE en enlevant la racine:
+
+$$ J = \frac{1}{N} * \sum_{i=0}^n {(oᵢ - yᵢ)²} $$
+
+On appelle cette fonction Mean Squared Error (MSE).
+
+Maintenant que nous avons définie notre fonction de coût, qui décrit l’erreur de notre modèle sur un dataset donné, nous avons besoin d’une solution pour minimiser cette erreur. On appelle ce procédé: l’optimisation de fonction. 
+
+<div style="page-break-after: always;"></div>
+---
+
+### Optimiser une fonction
+
+Soit f la fonction définie par $f:x \longrightarrow x^2$
+
+La représentation graphique de f est la suivante:
+
+![perte](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d01/loss.png)
+
+Nous pouvons observer que $f$ possède un minimum global: lorsque $x = 0$.
+Imaginons maintenant que nous ne connaissons pas le minimum global de $f$ et que nous voulons trouver cette valeur de $x$ pour laquelle $f$ est au plus faible.
+
+La façon la plus simple d’arriver à trouver ce minimum global est de partir d’une valeur aléatoire de $x$ et de “suivre” la pente de notre fonction. Par comparaison, c’est comme si nous laissions rouler une bille d’un point aléatoire de notre fonction: grâce à la gravité, elle se mettrait à rouler jusqu’au bas de la pente!
+
+Et c’est exactement ce que nous allons faire. On appelle cette méthode: la descente de gradient.
+
+<div style="page-break-after: always;"></div>
+---
+
+### Le gradient
+
+Selon Wikipedia:
+> “Le gradient est une généralisation multi-variable de la dérivée d'une fonction d'une seule variable. … Il représente donc la pente de la tangente du graphe de la fonction : il pointe dans la direction du taux d’augmentation le plus élevé de la fonction et sa magnitude est la pente du graphique dans cette direction.”
+
+Essayons d’éclaircir cette définition. La première phrase nous dit que le gradient d’une fonction - noté $∇$ (nabla) - est une généralisation multi-variable de la dérivée d’une fonction. Lorsque l’on dérive une fonction, on la dérive par rapport à un de ces paramètres. Faisons un rappel:
+
+### **Exercice 5** - Calculer une dérivée partielle:
+
+* Soit $f$ une fonction définie par: $f(x, y) = 3x2+4y+7$
+* Déterminer la dérivée partielle $\frac{∂f}{∂x}$ de $f$ par rapport à $x$.
+* Déterminer la dérivée partielle $\frac{∂f}{∂y}$ de $f$ par rapport à $y$.
+
+<div style="page-break-after: always;"></div>
+---
+
+La notion de “généralisation multi-variable de la dérivée” signifie “un ensemble de dérivée partielles”. Ainsi, le gradient d’une fonction est constitué de plusieurs dérivées partielles de cette fonction.
+
+Ainsi, si l’on reprend la fonction de l’exercice 5:  
+
+* Soit $f$ une fonction définie par: $f(x, y) =3x2+4y+7$
+* Le gradient $∇$ par rapport à $x$ et $y$ est défini par: $∇=\frac{∂f}{∂x},\frac{∂f}{∂y}=[6x, 4]$
+
+### **Exercice 6** - Calculer un gradient:
+
+* Soit $f$ une fonction définie par: $f(x, y, z) = (42x - 84y)2+z3$
+* Déterminer le gradient $∇$ de $f$ par rapport à tous ses paramètres.
+
+<div style="page-break-after: always;"></div>
+---
+
+
+Reprenons notre définition du gradient. La deuxième phrase nous dit: “Il représente donc la pente de la tangente du graphe de la fonction : il pointe dans la direction du taux d’augmentation le plus élevé de la fonction et sa magnitude est la pente du graphique dans cette direction.”.
+Cela signifie donc que notre gradient est un vecteur indiquant le maximum de notre fonction. Illustrons ce concept avec un schéma:
+
+![minimize](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d01/minimize.png)
+
+* Nous avons ici deux fonctions prenant deux paramètres (cela donne un schéma en 2 dimensions avec les valeurs données par une couleur)
+* Le blanc représente de faibles valeurs de $f$
+* Le noir représente de fortes valeurs de $f$
+* Les flèches bleu représentent les gradients de $f$ en fonction des valeurs de ses paramètres.
+
+Mettre à jour nos paramètres avec les valeurs du gradient nous permettrait donc de se diriger vers le maximum de notre fonction.
+Il serait donc judicieux de mettre à jour nos paramètres dans le sens inverse du gradient pour la minimiser.
+---
+<div style="page-break-after: always;"></div>
+
+### La mise à jour des paramètres
+
+Soit $θ$ (theta) l’ensemble des paramètres d’une fonction $f$ possédant $n$ paramètres.
+Le gradient $∇θ$ de la fonction $f$ est défini par: $∇θ=[\frac{∂f}{∂θ_0}, \frac{∂f}{∂θ_1}, ... , \frac{∂f}{∂θ_n}]$. 
+Pour minimiser $f$, nous pouvons mettre à jour les paramètres $θ$ en allant dans le sens inverse du gradient $∇θ$ grâce à la formule suivante:
+
+Soit $α$ (alpha) un hyperparamètre entre 0 et 1 nommé taux d’apprentissage (learning rate en anglais). Nous reviendrons dessus après.
+
+$θ= θ-α∇₀$
+
+C’est à dire:
+
+* $θ₀=θ₀-\frac{∂f}{∂θ₀}$ 
+* $θ₁=θ₁-\frac{∂f}{∂θ₁}$ 
+* ...
+* $θ_n=θ_n-\frac{∂f}{∂_n}$ 
+
+On soustrait à chaque paramètre la valeur de la dérivée partielle associée. Une soustraction est effectuée pour aller dans le sens inverse du gradient. Si nous voulions maximiser notre fonction, nous aurions effectué une addition.
+Cette formule agit comme une sorte de “saut” en direction du gradient.
+En appliquant cette formule de manière itérative, nous pouvons arriver à trouver le minimum de notre fonction !
+
+<div style="page-break-after: always;"></div>
+---
+
+### Le taux d’apprentissage
+
+Revenons sur le terme :
+
+* Dans la formule de mise à jour des paramètres,  est ce qu’on appelle un taux d’apprentissage (ou learning rate). C’est lui qui va réguler la distance du “saut” effectué par la mise à * jour des paramètres de notre modèle.
+* On appelle ce terme un hyperparamètre. C’est un paramètre qui va agire sur l’apprentissage du modèle, mais qui n’est pas compris dans le modèle lui même. Les hyperparamètres sont à * définir avant le début de l’apprentissage.
+* La valeur du taux d’apprentissage doit être comprise entre 0 et 1.
+* Une valeur proche de 0 effectuera des modifications légères des paramètres.
+* Une valeur proche de 1 effectuera des mises à jour importantes des paramètres.
+* Cet hyperparamètre doit être judicieusement choisi. Une valeur trop faible rendra la descente de gradient trop longue. Une valeur trop élevée risque de faire diverger l’algorithme.
+* Il n’existe pas de méthode empirique pour déterminer le taux d’apprentissage. Cependant, les valeurs suivantes sont souvent utilisés: $1e-1$ (0.1), $1e-2$ (0.01), $1e-3$ (0.001)...
+
+Voici un schéma illustrant le rôle du taux d’apprentissage:
+
+![lr](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d01/lr.png)
+
+<div style="page-break-after: always;"></div>
+---
+
+### La normalisation
+
+Un concept très important en machine learning est la normalisation.
+La normalisation est utilisée sur les valeurs numériques pour éviter de trop gros écarts de valeurs. En effet, de grandes valeurs d’entrées (ou de sorties attendues) provoquerait de grandes valeurs de dérivée, et donc, un gradient très grand ! Cela peut avoir comme effet de rendre l’apprentissage de notre modèle instable voir de faire diverger l’algorithme.
+Nous allons donc appliquer une normalisation centrée réduite sur nos valeurs.
+Cette normalisation a pour effet de rendre la moyenne des valeurs égale à 0, et l'écart-type (**c-a-d la dispersion des valeurs**) égale à 1.
+
+
+### **Exercice 7** - Trouver la formule de la normalisation centrée réduite:
+Soit $x$ un ensemble de valeurs de taille $n$, d’écart-type $σ$ (sigma) et de moyenne $µ$ (mu),
+Et $z$ les valeurs normalisées de $x$ par une normalisation centrée réduite.
+
+Écrivez la formule mettant en relation $x$ et $z$.
+
+<div style="page-break-after: always;"></div>
+---
+
+### Synthèse et algorithme
+
+Maintenant que nous avons élaboré notre modèle pour faire une approximation de la pression systolique en fonction de l’âge, que nous avons déterminé une fonction de coût représentant le taux d’erreur de notre modèle sur un dataset, et que nous savons comment minimiser une fonction, nous pouvons finaliser notre algorithme.
+
+Pour faire apprendre notre droite, il suffit d’effectuer une descente de gradient sur notre fonction de coût (la Mean Squared Error | MSE) par rapport à nos paramètres que l’on souhaite optimiser, c’est à dire les paramètres a et b de notre modèle f:xax + b.
+NB: x est considéré comme une constante pendant la descente de gradient, car nous souhaitons optimiser a et b en fonction des entrées de notre dataset.
+
+Voiçi l’algorithme général de la descente de gradient:
+
+Soit $θ$ le vecteur de paramètres optimisables de notre modèle $f$,
+$x$ le vecteur d’entrées normalisées du modèle $f$,
+$y$ le vecteur de sorties attendues normalisées pour le modèle $f$ avec le vecteur d’entrées $x$,
+ le taux d’apprentissage compris entre 0 et 1,
+$Jθ(x, y)$ la fonction de coût en fonction des paramètres θ avec les entrées $x$ et les sorties attendues $y$,
+$∇θ$ le gradient de $Jθ(x, y)$ en fonction des paramètres $θ$,
+$μ$ (mu) la limite du coût $Jθ(x)$ au delà de laquelle on considère que le modèle a convergé.
+
+  
+Évaluer $Jθ(x, y)$  
+&nbsp;&nbsp;Tant que $Jθ(x, y) < μ$:  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Calculer $∇θ$ en fonction de $x$ et $y$  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Appliquer $θ=θ-α∇θ$  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Évaluer $Jθ(x)$  
+
+
+<div style="page-break-after: always;"></div>
+---
+
+### **Exercice 8** - Calcul du gradient du modèle linéaire:
+
+Soit a et b deux paramètres optimisables de $f:x \longrightarrow ax + b$
+
+* $x_i$ l’entrée du ième exemple du dataset,
+* $y_i$ la sortie attendue du ième exemple du dataset.
+
+Calculer le gradient $∇J(x)$ de la fonction de coût (MSE) par rapport aux paramètres optimisables de notre modèle.
+
+### **Exercice 9** - Apprentissage du modèle linéaire:
+
+Compléter le fichier [**blood_model.py**](https://github.com/PoCFrance/Pool2019/tree/master/ai/exercices/day01/blood_model.py) et obtenez un modèle linéaire du dataset Blood.csv
+Vous devriez obtenir quelque chose similaire à ceci:
+
+![dresult](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d01/dayresult.png)

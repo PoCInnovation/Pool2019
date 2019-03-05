@@ -1,0 +1,92 @@
+status: hidden
+Title: Jour 01 - Partie 2
+Template: Page
+odate: 02/04/19
+
+## Définition du modèle
+
+Comme vous auriez dû le remarquer, la pression systolique est - plus ou moins - proportionnelle avec l’âge. Ainsi, nous pouvons faire une approximation de cette donnée grâce à une droite !
+
+Notre modèle sera donc une droite définie par:
+* $x$ l’âge du patient
+* $a$ et $b$ deux paramètres optimisables
+
+$$ f:x \mapsto ax + b $$
+
+$a$ et $b$ sont **“deux paramètres optimisables”**, c’est à dire que ce sont ces paramètres que nous avons besoin de trouver pour faire une approximation correcte de notre donnée.
+
+Le paramètre a est un coefficient de notre entrée $x$. C’est à dire que c’est lui qui va transformer notre entrée. En d’autres termes, a va représenter la “pente” de notre droite:
+
+
+![affine](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d01/3aff.png)
+
+<div style="page-break-after: always;"></div>
+
+---
+
+Le paramètre $b$ est ce qu’on appelle un biais. C’est lui qui va **“réguler la hauteur”** de notre droite dans son espace:
+
+![multaff](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d01/multaff.png)
+
+<div style="page-break-after: always;"></div>
+---
+
+### La notion de perte
+
+Nous voulons que notre modèle représente au mieux notre donnée. En d’autres termes, nous voulons que notre droite soit le plus proche possible des valeurs attendues. Par conséquent, nous voulons faire le moins d’erreur possible entre ce que prédit notre modèle et les valeurs du dataset !
+
+Pour cela, nous devons définir une métrique pour mesurer cette erreur. On appelle cette métrique la perte (ou fonction de coût, ou loss en anglais).
+Dans notre cas, cette perte peut être définie par la distance entre la prédiction de notre droite et la valeur attendue définie dans notre dataset:
+
+![multaff](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d01/perte.png)
+
+Faire apprendre notre modèle signifie donc “réduire le plus possible la perte de notre modèle sur un dataset”. En effet, plus la distance entre les prédictions de notre droite et les valeurs attendues de notre dataset sera faible, plus notre modèle sera une approximation fidèle de notre jeu de donnée.
+
+<div style="page-break-after: always;"></div>
+---
+
+### **Exercice 4** - Déterminer la fonction de coût (la perte / loss):
+
+Soit $N$ le nombre d’exemple (de paire âge / pression systolique) dans notre dataset et $f(xᵢ)=axᵢ+b$ la sortie de notre modèle pour l’âge $x_i$ donné,
+Et $yᵢ$ la pression sanguine systolique attendues pour l’âge $xᵢ$.
+
+Définir la fonction de coût $J$ qui représente l’erreur moyenne de notre modèle sur notre dataset.
+
+TIPS: 
+* Pensez à la notion de différence ou de distance.
+* Utilisez le symbole sigma. Exemple: $\sum_{i=0}^n {2i+1}$
+
+<div style="page-break-after: always;"></div>
+
+---
+
+
+<style>
+.swag {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+.swag:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.previous {
+  background-color: black;
+  color: black;
+}
+
+.next {
+  background-color: black;
+  color: white;
+}
+
+.round {
+  border-radius: 50%;
+}
+</style>
+
+<a href="https://github.com/PoCFrance/Pool2019/tree/master/ai/subjects/day01-3.markdown" class="swag next">Partie 3 &#8250;</a>
+

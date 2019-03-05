@@ -1,0 +1,259 @@
+Title: Jour 02 - Partie 1 - Introduction au réseaux de neurones
+
+### Le neurones biologique
+
+Prenons la définition du neurone biologique tirée de Wikiversity:
+“Un neurone est une cellule nerveuse constituant la base du système nerveux spécialisée dans le traitement des signaux électriques. … . En biologie, le cerveau humain contient un grand nombre de neurones fortement interconnectés constituant des réseaux de neurones.
+Chaque neurone est une entité autonome au sein du cerveau. Un neurone comprend un corps cellulaire ou cellule somatique ou soma, centre de contrôle de celui-ci, qui fait la somme des informations qui lui parviennent. Il traite ensuite l'information et renvoie le résultat sous forme de signaux électriques, du corps cellulaire à l'entrée des autres neurones au travers de son axone. Les axones reliant les neurones entre eux jouent donc un rôle important dans le comportement logique de l'ensemble. Le neurone est également constitué de plusieurs branches nommées dendrites, qui sont les récepteurs principaux du neurone, par lesquelles transite l'information venue de l'extérieur vers le corps cellulaire. Les synapses du neurone quant à eux reçoivent les informations des autres neurones via l'axone et permettent donc aux neurones de communiquer entre eux.”
+
+Voici un schéma pour vous aider à comprendre:
+
+![graph ex01](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d02/1.png)
+
+En d’autres termes, le neurone biologique reçoit des stimulations qui excitent ou inhibent les dendrites, le corps cellulaire “somme” les informations reçues, transmet l’information à l’axone qui va activer ou non le neurone, c’est à dire exciter ou inhiber les neurones liés aux synapses.
+
+<div style="page-break-after: always;"></div>
+
+### Le neurone artificiel - La pré-activation
+
+De la même manière qu’un neurone biologique reçoit des activations par ses dendrites, un neurone artificiel reçoit n stimulations ou entrées notées x. À chaque entrée xiest associé un poid synaptique wi. Le rôle des poids synaptiques est de transformer les entrées par pondération, de la même manière que le paramètre a transforme x dans la fonction $ f:x \mapsto ax+b $
+À cela, s’ajoute un autre paramètre nommé biais et noté b (parfois notéw0, en considérant que x0est une entrée toujours égale à 1) et possède le même rôle que b dans la fonction $ f:x \mapsto ax+b $
+La somme pondérée entre les entrées x et les poids synaptiques w s’appelle la pré-activation et simule le corps cellulaire du neurone biologique.
+
+Schématiquement, la pré-activation ressemble à ceci:
+
+![graph ex01](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d02/2.png)
+
+<div style="page-break-after: always;"></div>
+
+### **Exercice 1** - Écrire la formule de la pré-activation d’un neurone artificiel:
+
+Soit x un vecteur de n entrées,
+w un vecteur de n poids synaptiques,
+b un scalaire représentant le biais.
+
+En utilisant un sigma, écrire la formule de la pré-activation S d’un neurone artificiel.
+
+
+
+
+
+
+De la même manière qu’au jour 1, cette formule représente une transformation linéaire de nos entrées. Ainsi, si l’on affiche la représentation graphique de notre pré-activation, on observerait une droite (si n=1), un plan (si n=2), ou un hyperplan (si n>=3).
+
+![graph ex01](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d02/3.png)
+
+Représentation graphique de S avec n=2
+
+<div style="page-break-after: always;"></div>
+
+### La fonction d’activation
+
+Maintenant que nous avons une transformation linéaire de nos entrées, nous devons casser cette linéarité et activer (ou non) notre neurone. Pour cela nous avons besoin d’une fonction d’activation. Il existe plusieurs fonctions d’activations possibles, mais nous allons, aujourd’hui, nous concentrer sur la fonction sigmoïde.
+
+La fonction sigmoid est définie par $ f:x \mapsto 11+e-x $
+Sa représentation graphique est la suivante:
+
+![graph ex01](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d02/4.png)
+
+Outre le fait que cette fonction soit centrée en 0, elle opère comme une sorte de “séparateur” d’espace. C’est à dire que:
+Si x<0, alors 0<f(x)<0.5
+Si x0, alors 0.5f(x)<1
+
+<div style="page-break-after: always;"></div>
+
+Ainsi, en donnant la pré-activation S(x) de notre neurone en entrée de la fonction sigmoïde, nous pouvons interpréter la sortie comme suivant:
+Si S(x)<0, alors 0<f(S(x))<0.5, le neurone n’est pas activé;
+Si S(x)0, alors 0.5f(S(x))<1, le neurone est activé.
+
+![graph ex01](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d02/5.png)
+
+Activation d’un neurone (avec n=2)
+
+<div style="page-break-after: always;"></div>
+
+Ainsi, le schéma global du neurone artificiel est le suivant:
+
+![graph ex01](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d02/6.png)
+
+### **Exercice 2** - Écrire la formule de l’activation d’un neurone
+
+Soit x un vecteur de n entrées,
+w un vecteur de n poids synaptiques,
+b un scalaire représentant le biais,
+et o(x) l’activation du neurone avec l’entrée x.
+
+Écrivez la formule de l’activation o d’un neurone artificiel en fonction de x.
+
+<div style="page-break-after: always;"></div>
+
+### **Exercice 3** - Coder votre premier neurone:
+
+Complétez les méthodes sigmoid et activate du fichier Neuron.py donné avec le sujet.
+La fonction activate doit pouvoir calculer les résultats de plusieurs entrées en une seule fois grâce aux calculs matriciels.
+Testez le bon fonctionnement de votre neurone en exécutant le fichier Neuron.py
+
+Voiçi l’output attendu par l’exécution du fichier Neuron.py:
+[[9.44799462e-01]
+ [7.92124138e-04]
+ [9.98766666e-01]]
+
+TIPS:
+Utilisez les calculs matriciels, possibles grâce aux tableaux numpy, notamment le produit matriciel (opérateur @ avec numpy)
+
+### **Exercice 4** - Comprendre le rôle de chaque paramètre
+
+Ouvrez le fichier VisualizeNeuron.py et modifiez uns par uns les paramètres dans le main: 
+les poids synaptiques (weights)
+le biais (dernier nombre de weights)
+
+Observez le rôle de chaque paramètre dans le comportement du neurone.
+
+
+
+Comme vous pouvez le constater, le neurone artificiel agit comme un séparateur linéaire de notre espace. C’est à dire qu’une partie de notre espace va donner une sortie proche de 0, et l’autre partie, séparée par la fonction sigmoïde, va donner une sortie proche de 1. Voyons deux cas concrets: les portes logiques OR et AND.
+
+<div style="page-break-after: always;"></div>
+
+### La porte OR et AND
+
+Commençons par la porte OR:
+
+|---|---|---|
+||0|1|
+|0|0|1|
+|1|1|1|
+
+Affichons cette porte sur un plan:
+
+![graph ex01](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d02/7.png)
+
+On remarque que la porte OR est linéairement séparable, c’est à dire qu’un neurone artificiel est capable de faire une approximation de cette porte logique.
+
+<div style="page-break-after: always;"></div>
+
+![graph ex01](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d02/8.png)
+
+Illustration de la séparation linéaire de la porte OR
+
+De la même manière que notre modèle linéaire à appris à faire une approximation, nous allons appliquer l’algorithme de descente de gradient à notre neurone pour faire l’approximation de la porte OR.
+
+<div style="page-break-after: always;"></div>
+
+### L’entropie croisée
+
+Nous allons découvrir ensemble une nouvelle fonction de coût adaptées aux réseaux de neurones: l’entropie croisée ou cross entropy.
+Voyons la formule:
+Soit X une matrice de N vecteurs d’entrées,
+o(x) la sortie du neurone en fonction du vecteur d’entrée x,
+y le vecteur de sorties attendues pour la matrice d’entrées X.
+
+J(X,Y)=-1Ni=0N[yi ln (o(xi)) + (1-yi) ln (1-o(xi))]
+
+Décomposons terme à terme cette formule:
+1Ni=0Npour effectuer une moyenne sur les N exemples du dataset
+Imaginons maintenant la ième sortie attendue yi soit 0, alors l’entropie pour cet exemple serait:
+0  ln (o(xi)) + (1-0) ln (1-o(xi)) =ln(1-o(xi))
+
+Prenons la courbe de la fonction ln:
+
+![graph ex01](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d02/9.png)
+
+<div style="page-break-after: always;"></div>
+
+Si la sortie de notre neurone o(xi) tend vers 1, alors l’entropie va tendre vers -:
+x1 ln(1-x) = -
+Au contraire, si la sortie du neurone o(xi) tend vers la sortie attendue, c’est à dire 0, alors l’entropie va tendre vers 0:
+x0 ln(1-x) = 0
+
+
+À l’inverse, imaginons maintenant la ième sortie attendue yi soit 1, alors l’entropie pour cet exemple serait:
+1  ln (o(xi)) + (1-1) ln (1-o(xi)) =ln(o(xi))
+
+Si la sortie de notre neurone o(xi) tend vers 0, alors l’entropie va tendre vers -:
+x0 ln(x) = -
+Au contraire, si la sortie du neurone o(xi) tend vers la sortie attendue, c’est à dire 1, alors l’entropie va tendre vers 0:
+x1 ln(x) = 0
+
+Il reste un dernier symbole: le signe moins présent au tout début de la formule.
+Étant donné que la fonction logarithme népérien donne une sortie négative entre 0 et 1, Plus notre neurone artificiel fera d’erreurs, plus l’entropie croisée sera négative.
+Deux choix s’offre à nous:
+Aller dans le sens du gradient pour maximiser l’entropie croisée
+Ajouter un signe moins au début de notre formule d’entropie croisée, et minimiser cette fonction.
+
+Par convention, nous préférons le deuxième choix pour être en accord avec le concept de minimisation de fonction de coût.
+
+<div style="page-break-after: always;"></div>
+
+### **Exercice 5** - Implémenter l’entropie croisée
+
+Ouvrir le fichier cross_entropy.py et compléter la fonction calculate_cross_entropy.
+Testez en exécutant le fichier cross_entropy.py, la sortie attendue est la suivante:
+1.9519672634793763
+
+TIPS:
+Utilisez les opérations avec les tableaux numpy pour optimiser le temps de calcul
+
+<div style="page-break-after: always;"></div>
+
+### Calculer le gradient
+
+### **Exercice 6** - Calculer le gradient de l’entropie croisée:
+
+Dans cet exercice, vous allez apprendre à calculer le gradient de l’entropie croisée, étape par étape.
+
+⚠ Attention ⚠
+
+Inutile de rester bloquer sur cet exercice si vous n’y arrivez vraiment pas. La dérivée finale vous sera donnée dans l’exercice suivant. Cependant, il est essentiel que vous compreniez comment on arrive à ce résultat.
+
+Exercice 5.1 - Calculer la dérivée partielle de la pré-activation:
+	
+Soit x un vecteur de n entrées,
+w le vecteur de n poids synaptiques du neurone,
+b le biais du neurone,
+Et S(x, y) la pré-activation du neurone.
+
+Calculer la dérivée partielle S(X,y)wj
+
+Exercice 5.2 - Calculer la dérivée partielle de la sortie du neurone:
+
+Soit o(x) la sortie du neurone.
+
+Calculer la dérivée partielle o(x)wj
+TIPS: 
+* La dérivée de la sigmoïde est: f'(x)=f(x)1-f(x)
+* Utilisez le théorème des dérivées des fonctions composées
+* Ne réduisez pas les o(x)dans le résultat.
+
+<div style="page-break-after: always;"></div>
+
+Exercice 5.3 - Calculer la dérivée partielle de l’entropie
+
+Soit E(x, y) l’entropie définie par:
+E(x, y)=y ln(o(x))+(1-y) ln(1-o(x))
+
+Calculer la dérivée partielle E(x, y)wj
+TIPS: 
+Utilisez le théorème des dérivées des fonctions composées
+Ne réduisez pas les o(x)dans le résultat.
+
+Exercice 5.4 - Calculer la dérivée partielle de l’entropie croisée:
+Soit X une matrice de N vecteurs de n valeurs d’entrées,
+Xile ième vecteur d’entrée,
+Et J la fonction de coût entropie croisée tel que:
+ J(X,y)=-1Ni=0NE(Xi, yi)
+
+Calculer la dérivée partielleJ(X,y)wj de l’entropie croisée
+TIPS: 
+Utilisez le théorème des dérivées des fonctions composées
+Ne réduisez pas les o(x)dans le résultat.
+
+Exercice 5.5 - Calculer la dérivée partielle du biais:
+
+Étant donné que le biais du neurone se comporte comme un poid synaptique (toujours relié à une entrée x égale à 1).
+
+À partir de la dérivée partielle des poids synaptiques, déduire la formule de la dérivée partielle de l’entropie croisée par rapport à b J(X,y)b
+
+Le gradient ∇est donc défini par: ∇=J(X,y)w0,J(X,y)w1,... ,J(X,y)wn, J(X,y)b
+
+<a href="https://github.com/PoCFrance/Pool2019/tree/master/ai/pages/subjects/day02-2.markdown" class="swag next">Partie 2 &#8250;</a>

@@ -1,0 +1,133 @@
+Title: Jour 02 - Partie 2 - Introduction au réseaux de neurones
+
+### L’apprentissage d’un neurone
+
+La formule de mise à jour des poids synaptiques est donc identique à celle de la mise à jour des paramètres au jour 01:
+
+wi=wi- J(X,y)wi
+
+Pour la suite de l’exercice, considérez les dérivée partielles suivantes:
+
+Soit X une matrice de N vecteurs de n valeurs d’entrées,
+Xile ième vecteur d’entrée,
+Xijla jème entrée du le ième exemple,
+wjle jème poid synaptique du neurone,
+ble biais du neurone,
+o(Xi)la sortie du neurone avec l’entrée Xi,
+yila sortie attendue pour l’entrée Xi,
+Et J la fonction de coût entropie croisée:
+
+J(X,y)wj=-1Ni=0Nyio(Xi)-1-yi1 - o(Xi)o(Xi)1-o(Xi)Xij
+J(X,y)b=-1Ni=0Nyio(Xi)-1-yi1 - o(Xi)o(Xi)1-o(Xi)
+
+<div style="page-break-after: always;"></div>
+
+### **Exercice 7** - Entraîner un neurone à produire la porte OR:
+
+Ouvrez le fichier Neuron.py et complétez les fonctions calculate_gradient_out et apply_gradient.
+La fonction calculate_gradient_out NE DOIT PAS réaliser la moyenne de la formule de cross entropy, elle doit être faite dans la fonction apply_gradient. La raison sera donnée plus tard.
+Testez le bon fonctionnement de votre neurone en exécutant le fichier train_or.py 
+
+Si votre gradient est correcte, vous devriez obtenir un résultat similaire (pas exact) à celui là:
+Epoch 0: Loss = 1.614341
+Epoch 10: Loss = 1.052583
+Epoch 20: Loss = 0.747461
+Epoch 30: Loss = 0.601291
+…
+Epoch 970: Loss = 0.096275
+Epoch 980: Loss = 0.095386
+Epoch 990: Loss = 0.094511
+Testing:
+[[0.19455326]
+ [0.9248484 ]
+ [0.92448185]
+ [0.99839924]]
+
+TIPS:
+Utilisez les opérations avec les tableaux numpy pour optimiser le temps de calcul
+Vous pouvez modifier le paramètre LEARNING_RATE du fichier train_or.py
+
+### **Exercice 8** - Entraîner un neurone à produire la porte AND:
+
+Modifiez le dataset (ENTRIES et OUTS) dans le fichier train_or.py pour que votre neurone produise la porte AND.
+
+<div style="page-break-after: always;"></div>
+
+### **Exercice 9** - Essayer d’entraîner un neurone à produire la porte XOR:
+
+Modifiez le dataset (ENTRIES et OUTS) dans le fichier train_or.py pour que votre neurone produise la porte XOR.
+
+TIPS:
+* Passez au prochain exercice si vous n’y arrivez pas
+
+### La porte XOR
+
+Affichons la porte logique XOR:
+
+![graph ex01](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d02/10.png)
+
+Le problème avec cette porte, c’est qu’une droite ne suffit pas pour séparer les points noir des points blanc. La porte XOR n’est donc pas linéairement séparable.
+
+<div style="page-break-after: always;"></div>
+
+Pour résoudre ce problème, il nous faudrait deux neurones séparant les points blancs des points noir et un dernier neurone permettant de faire une synthèse de la sortie des deux premiers et réaliser un enchaînement de séparations linéaires de notre espace:
+
+![graph ex01](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d02/11.png)
+
+<div style="page-break-after: always;"></div>
+
+### La couche cachée
+
+Pour cela, nous allons ajouter une couche supplémentaire appelée couche cachée:
+
+![graph ex01](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d02/12.png)
+
+### **Exercice 10** - Coder un réseau de neurones:
+
+Ouvrez le fichier NeuralNetwork.py et complétez la fonction activate qui retourne les activations de la couche de sortie du réseau de neurone.
+
+Exécutez ce fichier pour tester votre code. La sortie attendue est la suivante (testé avec 2 neurones de sortie et 3 entrées, voir le main du fichier):
+[[0.78252157 0.21747843]
+ [0.88980783 0.11019217]
+ [0.7587423  0.2412577 ]]
+
+<div style="page-break-after: always;"></div>
+
+### La rétropropagation du gradient
+
+Pour faire apprendre nos neurones de notre couche cachée, nous avons besoin d’adapter le calcul du gradient pour ces neurones.
+Le calcul du gradient pour les neurones de sortie reste le même.
+Cependant, la dérivée partielle de la fonction de coût par rapport à un poid d’un neurone d’une couche cachée dépend de l’ensemble des dérivées des connections de ce neurone à la couche suivante. Voici un schéma pour expliquer cela:
+
+![graph ex01](https://github.com/PoCFrance/Pool2019/tree/master/ai/images/d02/13.png)
+
+<div style="page-break-after: always;"></div>
+
+Nous observons bien que la dérivée de la connection wi1j1dépend des dérivées des connections wj1k1 , wj1k2et wj1k3. C’est d’ailleurs pour cette raison que la moyenne des gradient ne s’effectue une foie tous les gradients calculés (rappelez vous l’exercice 6) !
+Ainsi, par l’application de la règle des dérivation en chaîne:
+
+Soitwijla connection entre le neurone i de la couche précédente et le neurone j,
+wjkla connection entre le neurone j et le neurone k de la couche suivante,
+K le nombre de neurones dans la couche suivante,
+oi, oj respectivement les sorties des neurones i et j,
+J(X,y)wij=k=0KwjkJ(X,y)wjkojwij
+    =k=0KwjkJ(X,y)wjkoj(1-oj)oi
+
+<div style="page-break-after: always;"></div>
+
+### **Exercice 11** - Appliquer la rétropropagation du gradient:
+
+Complétez la fonction calculate_hidden du fichier Neuon.py ainsi que les fonctions get_all_entries, calculate_output_layer_gradient, calculate_output_layer_gradient du fichier NeuralNetwork.py.
+
+Testez le bon fonctionnement de votre neurone en exécutant le fichier train_xor.py 
+Dans ce fichier, le réseau de neurone utilisé possède 2 neurone de sortie. Cela permet de tester le bon fonctionnement de votre code si votre réseau de neurone possède de multiples sorties. L’opération argmax permet de récupérer l’indice du neurone le plus activé.
+
+Si votre rétropropagation du gradient est correcte, vous devriez obtenir un résultat similaire (pas exact) à celui là:
+Epoch 0: Loss = 0.823921
+Epoch 10: Loss = 0.693222
+Epoch 20: Loss = 0.693187
+…
+Epoch 710: Loss = 0.104460
+Epoch 720: Loss = 0.098512
+Testing:
+[0 1 1 0]
