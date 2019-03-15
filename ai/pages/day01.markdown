@@ -5,7 +5,7 @@ Title: Jour 01 - Découverte du machine learning avec la regression linéaire
 
 * Les notions abordées dans cette piscine sont purement mathématiques. Si certains ne sont pas à l’aise avec les maths, n’hésitez surtout pas à poser toutes vos questions à vos encadrants pédagogiques;
 
-* Nous avons fait le choix d’utiliser des notations mathématiques plus ou moins rigoureuses. Ce choix a été motivé par le fait que toutes les avancées en matières d’intelligence artificielle se font via des démonstrations mathématiques, en voiçi un exemple: http://proceedings.mlr.press/v32/silver14.pdf . Ainsi, si vous décidez de continuer dans cette voie, vous serez déjà familiers avec cette rigueur.
+* Nous avons fait le choix d’utiliser des notations mathématiques plus ou moins rigoureuses. Ce choix a été motivé par le fait que toutes les avancées en matières d’intelligence artificielle se font via des démonstrations mathématiques, en voici un exemple: http://proceedings.mlr.press/v32/silver14.pdf . Ainsi, si vous décidez de continuer dans cette voie, vous serez déjà familiers avec cette rigueur.
 
 * Il est également possible que certains se sentent complètement perdus. C’est normal ! L’intelligence artificielle est un concept très abstrait, fondé sur des principes mathématiques parfois complexes. Tenez bon et posez des questions. Ne lâchez rien !
 
