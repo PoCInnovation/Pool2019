@@ -1,8 +1,9 @@
-[![PoC Logo](https://poc-innovation.com/logo_little.png)](https://poc-innovation.com)
+[![PoC Logo](./ai/images/favicon.png)](https://poc-innovation.com)
 
-# :briefcase: Pool 2019
+# PoC Pool 2019
+Les sujets et corrections des piscines 2019 de l'association PoC
 
-
-## Introduction
-
-<todo>
+- [AR/VR](./ar_vr/)
+- [AI](./ai/)
+- [Hardware](./hardware/)
+- [Security](./security/)
